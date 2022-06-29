@@ -1,16 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import '../css/account.css'
 
 const LoginScreen = ({closeLogin, showForgot}) => {
-
-    useEffect(function () {
-        const loginContainer = document.querySelector('.js-login-container')
-
-        loginContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
-
     function clickButtonForgot() {
         closeLogin()
         showForgot()
