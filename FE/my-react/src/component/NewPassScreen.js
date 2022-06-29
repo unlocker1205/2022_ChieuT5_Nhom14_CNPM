@@ -5,29 +5,25 @@ import '../css/account.css'
 const NewPassScreen = ({closeNewPass, showNotifySuccess, showNotifyFail}) => {
     const newPass = useRef(null)
     const newPassRep = useRef(null)
-    useEffect(function () {
-        const newPassContainer = document.querySelector('.js-new-pass-container')
-        const buttonSubmit = document.querySelector('.btn-new-pass')
+    
+    function checkMatchPass() {
+        if ((newPass.current.value === newPassRep.current.value) && (newPass.current.value !== '') && (newPassRep.current.value !== '')) {
+            axios.post('http://localhost:8080/back-end/update-password', newPass.current.value)
+                .then(function (response) {
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
+            closeNewPass()
+            showNotifySuccess()
+        } else {
+            showNotifyFail()
+        }
+    }
 
-        buttonSubmit.addEventListener('click', function () {
-            if ((newPass.current.value === newPassRep.current.value) && (newPass.current.value !== '') && (newPassRep.current.value !== '')) {
-                axios.post('http://localhost:8080/back-end/update-password', newPass.current.value)
-                    .then(function (response) {
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    });
-                closeNewPass()
-                showNotifySuccess()
-            } else {
-                showNotifyFail()
-            }
-        })
-
-        newPassContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
+    function clickButtonNewPass() {
+        checkMatchPass()
+    }
 
     return (
         <>
@@ -46,7 +42,7 @@ const NewPassScreen = ({closeNewPass, showNotifySuccess, showNotifyFail}) => {
                                    required type="password"/>
                         </div>
                         <div className="register-div">
-                            <a className="btn-register btn-new-pass" role="button">Xác nhận</a>
+                            <a onClick={clickButtonNewPass} className="btn-register btn-new-pass" role="button">Xác nhận</a>
                         </div>
                     </form>
                 </div>

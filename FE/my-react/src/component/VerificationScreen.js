@@ -4,31 +4,23 @@ import '../css/account.css'
 
 const VerificationScreen = ({closeVerification, showNotifySuccess, showNotifyFail}) => {
     const otp = useRef(null)
-    useEffect(function () {
-        const verificationContainer = document.querySelector('.js-verification-container')
-        const buttonVerification = document.querySelector('.btn-OK-verification')
-        let boolean;
+    let boolean;
 
-        buttonVerification.addEventListener('click', function () {
-            axios.get('http://localhost:8080/back-end/check-OTP?otp=' + otp.current.value)
-                .then(function (response) {
-                    boolean = response.data
-                    if (boolean) {
-                        closeVerification()
-                        showNotifySuccess()
-                    } else {
-                        showNotifyFail()
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
-        })
-
-        verificationContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
+    function clickButtonVerification() {
+        axios.get('http://localhost:8080/back-end/check-OTP?otp=' + otp.current.value)
+            .then(function (response) {
+                boolean = response.data
+                if (boolean) {
+                    closeVerification()
+                    showNotifySuccess()
+                } else {
+                    showNotifyFail()
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+    }
 
     return (
         <>
@@ -45,7 +37,7 @@ const VerificationScreen = ({closeVerification, showNotifySuccess, showNotifyFai
                                    type="text"/>
                         </div>
                         <div className="register-div">
-                            <a className="btn-register btn-OK-verification" role="button">OK</a>
+                            <a onClick={clickButtonVerification} className="btn-register btn-OK-verification" role="button">OK</a>
                         </div>
                     </form>
                 </div>

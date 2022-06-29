@@ -9,30 +9,22 @@ const NotifySuccessScreen = ({
                                  closeNewPass,
                                  closeNotifySuccess
                              }) => {
-    useEffect(function () {
-        const notifySuccessContainer = document.querySelector('.js-notify-success-container')
-        const buttonOK = document.querySelector('.btn-OK-success')
 
-        buttonOK.addEventListener('click', function () {
-            closeNotifySuccess()
-            switch (currentComponent) {
-                case 1:
-                    showVerification()
-                    break
-                case 2:
-                    closeVerification()
-                    showNewPass()
-                    break
-                case 3:
-                    closeNewPass()
-                    break
-            }
-        })
-
-        notifySuccessContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
+    function clickButtonSuccessOK() {
+        closeNotifySuccess()
+        switch (currentComponent) {
+            case 1:
+                showVerification()
+                break
+            case 2:
+                closeVerification()
+                showNewPass()
+                break
+            case 3:
+                closeNewPass()
+                break
+        }
+    }
 
     return (
         <>
@@ -47,7 +39,7 @@ const NotifySuccessScreen = ({
                         <div className="input-register">
                         </div>
                         <div className="register-div">
-                            <a className="btn-register btn-OK-success" role="button">OK</a>
+                            <a onClick={clickButtonSuccessOK} className="btn-register btn-OK-success" role="button">OK</a>
                         </div>
                     </form>
                 </div>

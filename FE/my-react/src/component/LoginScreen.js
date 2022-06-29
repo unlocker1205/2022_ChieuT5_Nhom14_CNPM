@@ -2,20 +2,10 @@ import React, {useEffect, useRef} from 'react';
 import '../css/account.css'
 
 const LoginScreen = ({closeLogin, showForgot}) => {
-
-    useEffect(function () {
-        const loginContainer = document.querySelector('.js-login-container')
-        const buttonForgot = document.querySelector('.js-forgot-pass')
-
-        buttonForgot.addEventListener('click', function () {
-            closeLogin()
-            showForgot()
-        })
-
-        loginContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
+    function clickButtonForgot() {
+        closeLogin()
+        showForgot()
+    }
 
 
     return (
@@ -36,7 +26,7 @@ const LoginScreen = ({closeLogin, showForgot}) => {
                         <button className="btn-login">Đăng nhập</button>
                     </form>
                     <div className="forgot-pass-main">
-                        <a className="forgot-pass js-forgot-pass" role="button">Quên mật khẩu</a>
+                        <a onClick={clickButtonForgot} className="forgot-pass js-forgot-pass" role="button">Quên mật khẩu</a>
                     </div>
                     <div className="border"/>
                     <div className="new-account">
