@@ -1,7 +1,5 @@
 package com.laptopsellingwebsite.beans;
 
-import java.util.Date;
-
 public class Account {
     private String idTK;
     private String maKH;

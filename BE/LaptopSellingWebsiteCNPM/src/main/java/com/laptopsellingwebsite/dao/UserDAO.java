@@ -40,6 +40,27 @@ public class UserDAO {
         }
         return null;
     }
+    public ArrayList getInfoCustomer(String maKH) {
+        ArrayList<Customer> listResult = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM khachhang WHERE khachhang.maKH= ?";
+            PreparedStatement ps = DBConnect.getInstance().get(query);
+            ps.setString(1, maKH);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                Customer customer = new Customer(resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8);
+                       
+                listResult.add(customer);
+            }
+            return listResult;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void updateOTP(String email, int otp) {
         try {

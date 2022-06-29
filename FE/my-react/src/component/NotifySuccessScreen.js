@@ -25,7 +25,6 @@ const NotifySuccessScreen = ({
                 break
         }
     }
-
     return (
         <>
             <div className="js-notify-success" id="notify-success-main" style={{zIndex: 10000}}>

@@ -7,7 +7,6 @@ const LoginScreen = ({closeLogin, showForgot}) => {
         showForgot()
     }
 
-
     return (
         <>
             <div className="js-login" id="login-main" style={{zIndex: 1000}}>

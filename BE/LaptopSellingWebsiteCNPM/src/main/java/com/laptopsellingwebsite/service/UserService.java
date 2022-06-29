@@ -3,6 +3,7 @@ package com.laptopsellingwebsite.service;
 import com.laptopsellingwebsite.beans.Account;
 import com.laptopsellingwebsite.dao.UserDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
