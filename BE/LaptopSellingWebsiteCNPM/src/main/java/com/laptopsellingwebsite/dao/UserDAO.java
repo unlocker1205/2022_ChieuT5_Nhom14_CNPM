@@ -51,7 +51,7 @@ public class UserDAO {
                 Customer customer = new Customer(resultSet.getString(5),
                         resultSet.getString(6),
                         resultSet.getString(7),
-                        resultSet.getString(8);
+                        resultSet.getString(8));
                        
                 listResult.add(customer);
             }
