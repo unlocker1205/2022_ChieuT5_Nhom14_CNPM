@@ -19,6 +19,7 @@ const Header = () => {
     const [fail, setFail] = useState(false)
     const [login, setLogin] = useState(false)
     const [register, setRegister] = useState(false)
+    const [title, setTitle] = useState('')
 
 
     function showRegister() {
@@ -39,6 +40,17 @@ const Header = () => {
     }
 
     function showNotifySuccess() {
+        switch (currentComponent) {
+            case 1:
+                setTitle('Tìm tài khoản thành công')
+                break
+            case 2:
+                setTitle('Mã OTP hợp lệ')
+                break
+            case 3:
+                setTitle('Mật khẩu trùng khớp')
+                break
+        }
         setSuccess(true)
     }
 
@@ -56,6 +68,17 @@ const Header = () => {
     }
 
     function showNotifyFail() {
+        switch (currentComponent) {
+            case 1:
+                setTitle('Tìm tài khoản thất bại. Tài khoản không tồn tại')
+                break
+            case 2:
+                setTitle('Mã OTP không hợp lệ')
+                break
+            case 3:
+                setTitle('Mật khẩu không trùng khớp')
+                break
+        }
         setFail(true)
     }
 
@@ -177,10 +200,10 @@ const Header = () => {
             {forgot && <ForgotScreen closeForgot={closeForgot} showNotifySuccess={showNotifySuccess}
                                      showNotifyFail={showNotifyFail}/>}
             {register && <Register/>}
-            {success && <NotifySuccessScreen closeNotifySuccess={closeNotifySuccess} closeNewPass={closeNewPass}
+            {success && <NotifySuccessScreen title={title} closeNotifySuccess={closeNotifySuccess} closeNewPass={closeNewPass}
                                              closeVerification={closeVerification} currentComponent={currentComponent}
                                              showNewPass={showNewPass} showVerification={showVerification}/>}
-            {fail && <NotifyFailScreen closeNotifyFail={closeNotifyFail}/>}
+            {fail && <NotifyFailScreen title={title} closeNotifyFail={closeNotifyFail}/>}
             {verification &&  <VerificationScreen closeVerification={closeVerification} showNotifyFail={showNotifyFail}
                                                   showNotifySuccess={showNotifySuccess}/>}
             {newPass && <NewPassScreen showNotifySuccess={showNotifySuccess} showNotifyFail={showNotifyFail}

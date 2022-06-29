@@ -7,7 +7,7 @@ const NotifySuccessScreen = ({
                                  closeVerification,
                                  showNewPass,
                                  closeNewPass,
-                                 closeNotifySuccess
+                                 closeNotifySuccess, title
                              }) => {
 
     function clickButtonSuccessOK() {
@@ -31,7 +31,7 @@ const NotifySuccessScreen = ({
                 <div className="register js-notify-success-container">
                     <div className="title-register">
                         <h1 className="title-register-main" style={{margin: 0, lineHeight: '1.4'}}>Thành công</h1>
-                        <p className="slogan-register">Thao tác thành công, sẵn sàng đến bước tiếp theo</p>
+                        <p className="slogan-register">{title}</p>
                     </div>
                     <div className="border"/>
                     <form action className="register-form">
