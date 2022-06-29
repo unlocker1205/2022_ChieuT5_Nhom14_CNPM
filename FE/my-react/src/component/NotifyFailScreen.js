@@ -2,18 +2,11 @@ import React, {useEffect} from 'react';
 import '../css/account.css'
 
 const NotifyFailScreen = ({closeNotifyFail}) => {
-    useEffect(function () {
-        const notifyFailContainer = document.querySelector('.js-notify-fail-container')
-        const buttonOK = document.querySelector('.btn-OK-fail')
+    function clickButtonFailOK() {
+        closeNotifyFail()
+    }
 
-        buttonOK.addEventListener('click', function () {
-            closeNotifyFail()
-        })
 
-        notifyFailContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
     return (
         <>
             <div className="js-notify-fail" id="notify-fail-main" style={{zIndex: 10000}}>
@@ -27,7 +20,7 @@ const NotifyFailScreen = ({closeNotifyFail}) => {
                         <div className="input-register">
                         </div>
                         <div className="register-div">
-                            <a className="btn-register btn-OK-fail" role="button">OK</a>
+                            <a onClick={clickButtonFailOK} className="btn-register btn-OK-fail" role="button">OK</a>
                         </div>
                     </form>
                 </div>
