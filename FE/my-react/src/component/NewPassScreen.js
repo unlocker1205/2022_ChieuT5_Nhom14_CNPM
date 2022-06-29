@@ -3,18 +3,10 @@ import axios from "axios";
 import '../css/account.css'
 
 const NewPassScreen = ({closeNewPass, showNotifySuccess, showNotifyFail}) => {
-    useEffect(function () {
-        const newPassContainer = document.querySelector('.js-new-pass-container')
-
-        newPassContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
-
     const newPass = useRef(null)
     const newPassRep = useRef(null)
-
-    function clickButtonNewPass() {
+    
+    function checkMatchPass() {
         if ((newPass.current.value === newPassRep.current.value) && (newPass.current.value !== '') && (newPassRep.current.value !== '')) {
             axios.post('http://localhost:8080/back-end/update-password', newPass.current.value)
                 .then(function (response) {
@@ -29,6 +21,10 @@ const NewPassScreen = ({closeNewPass, showNotifySuccess, showNotifyFail}) => {
         }
     }
 
+    function clickButtonNewPass() {
+        checkMatchPass()
+    }
+
     return (
         <>
             <div className="js-new-pass" id="new-pass-main" style={{zIndex: 1000}}>
@@ -40,9 +36,9 @@ const NewPassScreen = ({closeNewPass, showNotifySuccess, showNotifyFail}) => {
                     <div className="border"/>
                     <form action className="register-form">
                         <div className="input-register">
-                            <input id="new-pass" className="input-items" placeholder="Mật khẩu mới" required
+                            <input ref={newPass} id="new-pass" className="input-items" placeholder="Mật khẩu mới" required
                                    type="password"/>
-                            <input id="new-pass-rep" className="input-items" placeholder="Nhập lại mật khẩu mới"
+                            <input ref={newPassRep} id="new-pass-rep" className="input-items" placeholder="Nhập lại mật khẩu mới"
                                    required type="password"/>
                         </div>
                         <div className="register-div">

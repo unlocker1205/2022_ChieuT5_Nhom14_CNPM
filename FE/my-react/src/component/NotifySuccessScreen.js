@@ -9,15 +9,8 @@ const NotifySuccessScreen = ({
                                  closeNewPass,
                                  closeNotifySuccess
                              }) => {
-    useEffect(function () {
-        const notifySuccessContainer = document.querySelector('.js-notify-success-container')
 
-        notifySuccessContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
-
-    function clickButtonSuccess() {
+    function clickButtonSuccessOK() {
         closeNotifySuccess()
         switch (currentComponent) {
             case 1:
@@ -45,7 +38,7 @@ const NotifySuccessScreen = ({
                         <div className="input-register">
                         </div>
                         <div className="register-div">
-                            <a onClick={clickButtonSuccess} className="btn-register btn-OK-success" role="button">OK</a>
+                            <a onClick={clickButtonSuccessOK} className="btn-register btn-OK-success" role="button">OK</a>
                         </div>
                     </form>
                 </div>

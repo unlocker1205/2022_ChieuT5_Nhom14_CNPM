@@ -3,16 +3,8 @@ import axios from "axios";
 import '../css/account.css'
 
 const VerificationScreen = ({closeVerification, showNotifySuccess, showNotifyFail}) => {
-    useEffect(function () {
-        const verificationContainer = document.querySelector('.js-verification-container')
-
-        verificationContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    }, [])
-
-    let boolean;
     const otp = useRef(null)
+    let boolean;
 
     function clickButtonVerification() {
         axios.get('http://localhost:8080/back-end/check-OTP?otp=' + otp.current.value)
